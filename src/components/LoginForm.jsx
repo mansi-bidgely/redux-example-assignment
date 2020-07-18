@@ -81,7 +81,7 @@ class LoginForm extends Component {
       .then((success) => {
         this.props.setLoginPending(false);
         this.props.setLoginSuccess(true);
-        this.props.history.push("/Dashboard");
+        this.props.history.push("/dashboard");
       })
       .catch((error) => {
         console.log("jain");

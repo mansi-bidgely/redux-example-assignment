@@ -16,7 +16,7 @@ import Dashboard from "./components/Dashboard";
 ReactDOM.render(
   <Provider store={createStore(reducer)}>
     <Router>
-      <Route path="/Dashboard" component={Dashboard}></Route>
+      <Route path="/dashboard" component={Dashboard}></Route>
       <Route exact={true} path="/" component={LoginForm}></Route>
     </Router>
   </Provider>,
