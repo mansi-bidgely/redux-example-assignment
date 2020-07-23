@@ -1,23 +1,45 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import "./style.css";
-import logo from "./newputlogo.png";
+import Dashboard from "./Dashboard.jsx";
+import Navbar from "./Navbar.jsx";
+import logo from "../assets/images/newputlogo.png";
 import {
   login,
   setLoginError,
   setLoginSuccess,
   setLoginPending,
 } from "../redux/reducer";
-
 import { sendLoginRequest } from "../Request/requestCall";
-import Dashboard from "./Dashboard.jsx";
-import Navbar from "./Navbar.jsx";
 
 class LoginForm extends Component {
   constructor(props) {
     super(props);
     this.state = {};
   }
+
+  onSubmit = (e) => {
+    e.preventDefault();
+    let { email, password } = this.state;
+
+    sendLoginRequest(email, password)
+      .then((success) => {
+        const expirationDuration = 1000 * 60 * 60 * 1;
+        const currentTime = new Date().getTime();
+        const prevAcceptedExpired = currentTime > expirationDuration;
+        if (prevAcceptedExpired) {
+          localStorage.setItem("isLoginSuccess", true);
+        }
+
+        this.props.setLoginPending(false);
+        this.props.setLoginSuccess(true);
+
+        this.props.history.push("/dashboard");
+      })
+      .catch((error) => {
+        console.log("jain");
+      });
+  };
+
   render() {
     let { email, password } = this.state;
     let { isLoginPending, isLoginSuccess, LoginError } = this.props;
@@ -60,7 +82,12 @@ class LoginForm extends Component {
                         id="customCheck1"
                       />
                     </div>
-                    <button type="submit" value="login" name="login">
+                    <button
+                      className="login"
+                      type="submit"
+                      value="login"
+                      name="login"
+                    >
                       login
                     </button>
                   </form>
@@ -72,21 +99,6 @@ class LoginForm extends Component {
       </React.Fragment>
     );
   }
-
-  onSubmit = (e) => {
-    e.preventDefault();
-    let { email, password } = this.state;
-
-    sendLoginRequest(email, password)
-      .then((success) => {
-        this.props.setLoginPending(false);
-        this.props.setLoginSuccess(true);
-        this.props.history.push("/dashboard");
-      })
-      .catch((error) => {
-        console.log("jain");
-      });
-  };
 }
 
 const mapStateToProps = (state) => {

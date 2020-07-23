@@ -3,23 +3,22 @@ import ReactDOM from "react-dom";
 import "bootstrap/dist/css/bootstrap.css";
 import "./index.css";
 import App from "./App";
-import * as serviceWorker from "./serviceWorker";
-import { Provider } from "react-redux";
-import { createStore } from "redux";
-import reducer from "./redux/reducer";
 import LoginForm from "./components/LoginForm.jsx";
 
-import { BrowserRouter as Router, Route, Link, Switch } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Route,
+  Link,
+  Switch,
+  Redirect,
+} from "react-router-dom";
 
-import Dashboard from "./components/Dashboard";
+import Dashboard from "./components/Dashboard.jsx";
+import * as serviceWorker from "./serviceWorker";
 
 ReactDOM.render(
-  <Provider store={createStore(reducer)}>
-    <Router>
-      <Route path="/dashboard" component={Dashboard}></Route>
-      <Route exact={true} path="/" component={LoginForm}></Route>
-    </Router>
-  </Provider>,
+  <App />,
+
   document.getElementById("root")
 );
 

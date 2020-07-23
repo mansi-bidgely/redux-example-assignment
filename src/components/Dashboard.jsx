@@ -1,11 +1,12 @@
 import React, { Component, componentDidUpdate } from "react";
-import Navbar from "./Navbar";
 import { connect } from "react-redux";
+import Post from "./Post.jsx";
+import Navbar from "./Navbar";
 import { setLoginSuccess } from "../redux/reducer";
 
 class Dashboard extends Component {
   componentDidUpdate = () => {
-    this.props.history.push("/");
+    this.props.history.push("/login");
   };
   render() {
     let { isLoginPending, isLoginSuccess, LoginError } = this.props;
@@ -13,7 +14,7 @@ class Dashboard extends Component {
     return (
       <div>
         <Navbar login={isLoginSuccess} />
-        Welcome
+        <Post />
       </div>
     );
   }

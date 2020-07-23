@@ -1,7 +1,14 @@
 import Promise from "es6-promise";
+import { createStore } from "redux";
 const LOGIN_PENDING = "LOGIN_PENDING";
 const LOGIN_SUCCESS = "LOGIN_SUCCESS";
 const LOGIN_ERROR = "LOGIN_ERROR";
+export const ADD_COMMENT = "ADD_COMMENT";
+
+export const addComment = (comment) => ({
+  type: ADD_COMMENT,
+  payload: comment,
+});
 export function setLoginPending(isLoginPending) {
   return {
     type: LOGIN_PENDING,
@@ -23,28 +30,34 @@ export function setLoginError(LoginError) {
   };
 }
 
-/* export function login(email, password) {
-  return (dispatch) => {
-    dispatch(setLoginPending(true));
-    dispatch(setLoginSuccess(false));
-    dispatch(setLoginError(null));
-    sendLoginRequest(email, password)
-      .then((success) => {
-        dispatch(setLoginPending(false));
-        dispatch(setLoginSuccess(true));
-        dispatch(setLoginError());
-      })
-      .catch((error) => {
-        dispatch(setLoginPending(false));
-        dispatch(setLoginError(error));
-      });
-  };
-} */
 export default function reducer(
   state = {
     isLoginPending: false,
-    isLoginSuccess: false,
+    isLoginSuccess: true,
     isLoginError: null,
+
+    comments: [
+      {
+        id: 1,
+        author: "landiggity",
+        body: "This is my first comment on this forum so don't be a dick",
+        initialComment: new Date("June 10,2020").getTime(),
+      },
+      {
+        id: 2,
+        author: "scarlett-jo",
+        body:
+          "That's a mighty fine comment you've got there my good looking fellow...",
+
+        initialComment: new Date("June 04,2020").getTime(),
+      },
+      {
+        id: 3,
+        author: "rosco",
+        body: "What is the meaning of all of this 'React' mumbo-jumbo?",
+        initialComment: new Date("June 01,2020").getTime(),
+      },
+    ],
   },
   action
 ) {
@@ -64,6 +77,9 @@ export default function reducer(
         ...state,
         isLoginError: action.isLoginError,
       };
+    case ADD_COMMENT:
+      return { ...state, comments: [...state.comments, action.payload] };
+
     default:
       return state;
   }

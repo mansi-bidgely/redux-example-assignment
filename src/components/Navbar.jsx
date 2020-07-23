@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-
+import { Redirect } from "react-router-dom";
 import { connect } from "react-redux";
 import {
   login,
@@ -7,19 +7,26 @@ import {
   setLoginSuccess,
   setLoginPending,
 } from "../redux/reducer";
-import { Redirect } from "react-router-dom";
+
 class NavBar extends Component {
   constructor(props) {
     super();
   }
-  render() {
-    const isLoggedIn = this.props.login;
 
+  handleLogout = () => {
+    localStorage.removeItem("isLoginSuccess");
+    this.props.setLoginSuccess(false);
+  };
+
+  render() {
+    const serializedState = localStorage.getItem("isLoginSuccess");
+    console.log(serializedState);
+    const isLoggedIn = serializedState;
     return (
       <React.Fragment>
         <nav className="navbar navbar-dark bg-dark mb-3">
           {isLoggedIn && (
-            <a className="navbar-brand" onClick={this.handleLogout}>
+            <a className="navbar-brand flow" onClick={this.handleLogout}>
               logout
             </a>
           )}
@@ -27,9 +34,6 @@ class NavBar extends Component {
       </React.Fragment>
     );
   }
-  handleLogout = () => {
-    this.props.setLoginSuccess(false);
-  };
 }
 const mapStateToProps = (state) => {
   return {
