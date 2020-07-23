@@ -1,4 +1,3 @@
-import Promise from "es6-promise";
 import { createStore } from "redux";
 const LOGIN_PENDING = "LOGIN_PENDING";
 const LOGIN_SUCCESS = "LOGIN_SUCCESS";
@@ -33,7 +32,7 @@ export function setLoginError(LoginError) {
 export default function reducer(
   state = {
     isLoginPending: false,
-    isLoginSuccess: true,
+    isLoginSuccess: false,
     isLoginError: null,
 
     comments: [

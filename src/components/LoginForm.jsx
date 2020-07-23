@@ -83,7 +83,7 @@ class LoginForm extends Component {
                       value="login"
                       name="login"
                     >
-                      login
+                      Login
                     </button>
                   </form>
                 </div>

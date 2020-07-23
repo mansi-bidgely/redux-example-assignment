@@ -11,10 +11,10 @@ class Dashboard extends Component {
   render() {
     let { isLoginPending, isLoginSuccess, LoginError } = this.props;
     return (
-      <div>
+      <React.Fragment>
         <Navbar login={isLoginSuccess} />
         <Post />
-      </div>
+      </React.Fragment>
     );
   }
 }

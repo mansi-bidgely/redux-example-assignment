@@ -4,15 +4,6 @@ import "bootstrap/dist/css/bootstrap.css";
 import "./index.css";
 import App from "./App";
 import LoginForm from "./components/LoginForm.jsx";
-
-import {
-  BrowserRouter as Router,
-  Route,
-  Link,
-  Switch,
-  Redirect,
-} from "react-router-dom";
-
 import Dashboard from "./components/Dashboard.jsx";
 import * as serviceWorker from "./serviceWorker";
 
