@@ -13,7 +13,6 @@ import logo from "./logo.svg";
 import Dashboard from "./components/Dashboard.jsx";
 import LoginForm from "./components/LoginForm.jsx";
 import "./App.css";
-import "./assets/scss/style.scss";
 import "bootstrap/dist/css/bootstrap.min.css";
 
 function App() {

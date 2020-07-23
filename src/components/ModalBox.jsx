@@ -2,8 +2,8 @@ import React from "react";
 import { connect } from "react-redux";
 import Modal, { closeStyle } from "simple-react-modal";
 import { addComment } from "../redux/reducer";
-import reducer from "../redux/reducer.js";
 import uuidv1 from "uuid";
+import "../assets/scss/modal.scss";
 
 const mapDispatchToProps = (dispatch) => {
   return {
@@ -38,10 +38,9 @@ class ModalBox extends React.Component {
             <form
               className="form-modal"
               onSubmit={this.handleSubmit.bind(this)}
-            >
-              <a style={closeStyle} onClick={this.onClose.bind(this)}>
+            ><span style={closeStyle} onClick={this.onClose.bind(this)}>
                 X
-              </a>
+              </span>
               <div>ADD COMMENT</div>
               <hr></hr>
               <div className="">

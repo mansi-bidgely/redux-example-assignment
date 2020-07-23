@@ -2,14 +2,14 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import Post from "./Post.jsx";
 import Navbar from "./Navbar";
-import { setLoginSuccess } from "../redux/reducer";
+
 
 class Dashboard extends Component {
   componentDidUpdate = () => {
     this.props.history.push("/login");
   };
   render() {
-    let { isLoginPending, isLoginSuccess, LoginError } = this.props;
+    let { isLoginSuccess } = this.props;
     return (
       <React.Fragment>
         <Navbar login={isLoginSuccess} />

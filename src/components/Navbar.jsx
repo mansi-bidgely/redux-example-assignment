@@ -6,16 +6,12 @@ import {
   setLoginSuccess,
   setLoginPending,
 } from "../redux/reducer";
+import "../assets/scss/navbar.scss";
 
 class NavBar extends Component {
   constructor(props) {
     super();
   }
-
-  handleLogout = () => {
-    localStorage.removeItem("isLoginSuccess");
-    this.props.setLoginSuccess(false);
-  };
 
   render() {
     const serializedState = localStorage.getItem("isLoginSuccess");
@@ -24,15 +20,20 @@ class NavBar extends Component {
       <React.Fragment>
         <nav className="navbar navbar-dark bg-dark mb-3">
           {isLoggedIn && (
-            <a className="navbar-brand flow" onClick={this.handleLogout}>
-              logout
-            </a>
+            <span className="navbar-brand flow" onClick={this.handleLogout}>
+              Logout
+            </span>
           )}
         </nav>
       </React.Fragment>
     );
   }
+  handleLogout = () => {
+    localStorage.clear();
+    this.props.setLoginSuccess(false);
+  };
 }
+
 const mapStateToProps = (state) => {
   return {
     isLoginPending: state.isLoginPending,

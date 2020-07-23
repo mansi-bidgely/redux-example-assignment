@@ -9,6 +9,7 @@ import {
   setLoginPending,
 } from "../redux/reducer";
 import { sendLoginRequest } from "../Request/requestCall";
+import "../assets/scss/login.scss";
 
 class LoginForm extends Component {
   constructor(props) {
@@ -22,12 +23,8 @@ class LoginForm extends Component {
 
     sendLoginRequest(email, password)
       .then((success) => {
-        const expirationDuration = 1000 * 60 * 60 * 1;
-        const currentTime = new Date().getTime();
-        const prevAcceptedExpired = currentTime > expirationDuration;
-        if (prevAcceptedExpired) {
-          localStorage.setItem("isLoginSuccess", true);
-        }
+        localStorage.setItem("isLoginSuccess", true);
+
         this.props.setLoginPending(false);
         this.props.setLoginSuccess(true);
         this.props.history.push("/dashboard");
@@ -41,14 +38,14 @@ class LoginForm extends Component {
     let { setLoginPending, setLoginSuccess } = this.state;
     return (
       <React.Fragment>
-        <div class="container">
-          <div class="row">
-            <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
-              <div class="card card-signin my-5">
-                <div class="card-body">
+        <div classNameh="container">
+          <div className="row">
+            <div className="col-sm-9 col-md-7 col-lg-5 mx-auto">
+              <div className="card card-signin my-5">
+                <div className="card-body">
                   <img src={logo} alt="Avatar" className="avatar" />
-                  <form class="form-signin" onSubmit={this.onSubmit}>
-                    <div class="form-label-group">
+                  <form className="form-container" onSubmit={this.onSubmit}>
+                    <div className="form-label-group">
                       <input
                         type="email"
                         name="email"
@@ -59,7 +56,7 @@ class LoginForm extends Component {
                       <label for="inputEmail">Email address</label>
                     </div>
 
-                    <div class="form-label-group">
+                    <div className="form-label-group">
                       <input
                         type="password"
                         name="password"
@@ -70,10 +67,10 @@ class LoginForm extends Component {
                       <label for="inputPassword">Password</label>
                     </div>
 
-                    <div class="custom-control custom-checkbox mb-3">
+                    <div className="custom-control custom-checkbox mb-3">
                       <input
                         type="checkbox"
-                        class="custom-control-input"
+                        className="custom-control-input"
                         id="customCheck1"
                       />
                     </div>

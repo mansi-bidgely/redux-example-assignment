@@ -4,6 +4,7 @@ import List from "./Comment.jsx";
 import ModalBox from "./ModalBox.jsx";
 import icon from "../assets/images/user-icon.png";
 import deep from "../assets/images/deep.jpg";
+import "../assets/scss/post.scss";
 
 const mapStateToProps = (state) => {
   return { comments: state.comments };

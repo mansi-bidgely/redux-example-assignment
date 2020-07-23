@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import user from "../assets/images/default-user.png";
+import "../assets/scss/comment.scss";
 const mapStateToProps = (state) => {
   return { comments: state.comments };
 };
@@ -34,7 +35,7 @@ function getTimeStamp(timeStamp) {
 
 const commentList = ({ comments }) => {
   return (
-    <ul className="list-group list-group-flush top ">
+    <ul className="list-group list-group-flush top">
       {comments.map((el) => (
         <li className="list-group-item" key={el.id}>
           <img src={user} className="image-width" />
