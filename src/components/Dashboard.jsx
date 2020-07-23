@@ -1,4 +1,4 @@
-import React, { Component, componentDidUpdate } from "react";
+import React, { Component } from "react";
 import { connect } from "react-redux";
 import Post from "./Post.jsx";
 import Navbar from "./Navbar";
@@ -10,7 +10,6 @@ class Dashboard extends Component {
   };
   render() {
     let { isLoginPending, isLoginSuccess, LoginError } = this.props;
-    console.log(isLoginSuccess);
     return (
       <div>
         <Navbar login={isLoginSuccess} />

@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import { Redirect } from "react-router-dom";
 import { connect } from "react-redux";
 import {
-  login,
   setLoginError,
   setLoginSuccess,
   setLoginPending,
@@ -20,7 +19,6 @@ class NavBar extends Component {
 
   render() {
     const serializedState = localStorage.getItem("isLoginSuccess");
-    console.log(serializedState);
     const isLoggedIn = serializedState;
     return (
       <React.Fragment>

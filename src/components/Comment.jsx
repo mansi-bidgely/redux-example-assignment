@@ -1,4 +1,4 @@
-import React, { Component, componentDidUpdate } from "react";
+import React, { Component } from "react";
 import { connect } from "react-redux";
 import user from "../assets/images/default-user.png";
 const mapStateToProps = (state) => {
@@ -14,12 +14,12 @@ function getTimeStamp(timeStamp) {
   let hh = "",
     mm = "",
     ss = "";
-  if (hours != 0) {
+  if (hours !== 0) {
     hh = `${hours % 24} hrs `;
   } else {
     hh = " ";
   }
-  if (minutes != 0) {
+  if (minutes !== 0) {
     mm = `${minutes % 60} min `;
   } else {
     if (seconds === 0) {
@@ -33,7 +33,6 @@ function getTimeStamp(timeStamp) {
 }
 
 const commentList = ({ comments }) => {
-  console.log(comments);
   return (
     <ul className="list-group list-group-flush top ">
       {comments.map((el) => (

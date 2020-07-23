@@ -4,7 +4,6 @@ import Dashboard from "./Dashboard.jsx";
 import Navbar from "./Navbar.jsx";
 import logo from "../assets/images/newputlogo.png";
 import {
-  login,
   setLoginError,
   setLoginSuccess,
   setLoginPending,
@@ -29,15 +28,11 @@ class LoginForm extends Component {
         if (prevAcceptedExpired) {
           localStorage.setItem("isLoginSuccess", true);
         }
-
         this.props.setLoginPending(false);
         this.props.setLoginSuccess(true);
-
         this.props.history.push("/dashboard");
       })
-      .catch((error) => {
-        console.log("jain");
-      });
+      .catch((error) => {});
   };
 
   render() {

@@ -1,4 +1,4 @@
-import React, { componentDidUpdate } from "react";
+import React from "react";
 import { connect } from "react-redux";
 import Modal, { closeStyle } from "simple-react-modal";
 import { addComment } from "../redux/reducer";
@@ -21,7 +21,6 @@ class ModalBox extends React.Component {
     let initialComment = new Date().getTime();
     const id = uuidv1();
     this.props.addComment({ body, id, initialComment });
-
     this.onClose();
   }
   render() {
