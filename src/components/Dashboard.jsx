@@ -6,6 +6,7 @@ import Navbar from "./Navbar";
 
 class Dashboard extends Component {
   componentDidUpdate = () => {
+    
     this.props.history.push("/login");
   };
   render() {

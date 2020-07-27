@@ -1,8 +1,6 @@
 import React, { Component } from "react";
-import { Redirect } from "react-router-dom";
 import { connect } from "react-redux";
 import {
-  setLoginError,
   setLoginSuccess,
   setLoginPending,
 } from "../redux/reducer";
@@ -31,6 +29,7 @@ class NavBar extends Component {
   handleLogout = () => {
     localStorage.clear();
     this.props.setLoginSuccess(false);
+  
   };
 }
 
