@@ -1,93 +1,133 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import "./style.css";
-import logo from "./newputlogo.png";
+import { Formik, Form, Field, ErrorMessage } from "formik";
+import logo from "../assets/images/newputlogo.png";
 import {
-  login,
-  setLoginError,
   setLoginSuccess,
   setLoginPending,
 } from "../redux/reducer";
-
 import { sendLoginRequest } from "../Request/requestCall";
-import Dashboard from "./Dashboard.jsx";
-import Navbar from "./Navbar.jsx";
+import "../assets/scss/login.scss";
 
 class LoginForm extends Component {
+ 
+
   constructor(props) {
     super(props);
     this.state = {};
   }
-  render() {
-    let { email, password } = this.state;
-    let { isLoginPending, isLoginSuccess, LoginError } = this.props;
-    let { setLoginPending, setLoginSuccess } = this.state;
-    return (
-      <React.Fragment>
-        <div class="container">
-          <div class="row">
-            <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
-              <div class="card card-signin my-5">
-                <div class="card-body">
-                  <img src={logo} alt="Avatar" className="avatar" />
-                  <form class="form-signin" onSubmit={this.onSubmit}>
-                    <div class="form-label-group">
-                      <input
-                        type="email"
-                        name="email"
-                        onChange={(e) =>
-                          this.setState({ email: e.target.value })
-                        }
-                      />
-                      <label for="inputEmail">Email address</label>
-                    </div>
+  initialValues() {
+    return {
+      email: "",
+      password: "",
 
-                    <div class="form-label-group">
-                      <input
-                        type="password"
-                        name="password"
-                        onChange={(e) =>
-                          this.setState({ password: e.target.value })
-                        }
-                      ></input>
-                      <label for="inputPassword">Password</label>
-                    </div>
-
-                    <div class="custom-control custom-checkbox mb-3">
-                      <input
-                        type="checkbox"
-                        class="custom-control-input"
-                        id="customCheck1"
-                      />
-                    </div>
-                    <button type="submit" value="login" name="login">
-                      login
-                    </button>
-                  </form>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </React.Fragment>
-    );
+    }
   }
 
-  onSubmit = (e) => {
-    e.preventDefault();
-    let { email, password } = this.state;
+  validate(values) {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/i;
+    let errors = {};
 
-    sendLoginRequest(email, password)
+    if (values.email === "") {
+      errors.email = "Email is missing";
+    } else if (!emailRegex.test(values.email)) {
+      errors.email = "Email is not in the expected email address standard format";
+    }
+    else{}
+    if (values.password === "") {
+      errors.password = "Password is missing";
+    } else if (values.password.length < 6) {
+      errors.password = "Password must be 6 characters at minimum";
+    }
+    else{}
+    return errors;    
+  }
+
+
+
+  onSubmit (values) {
+    sendLoginRequest(values.email, values.password)
       .then((success) => {
+        localStorage.setItem("isLoginSuccess",true);
         this.props.setLoginPending(false);
         this.props.setLoginSuccess(true);
         this.props.history.push("/dashboard");
       })
       .catch((error) => {
-        console.log("jain");
+               return error;
+
       });
   };
+
+
+  render() {
+    let { email, password } = this.state;
+    let { isLoginPending, isLoginSuccess, LoginError } = this.props;
+    let { setLoginPending, setLoginSuccess } = this.state;
+    let { values,valid, errors } = this.state; 
+    return ( 
+    <div className="form">
+    <div className="row justify-content-center">
+      <div className="col-lg-6">
+        <div className="col-lg-12 borderBox">
+          <img src={logo} alt="avator" className="avatar"/>
+        <Formik
+                initialValues={this.initialValues()}
+                validate={this.validate.bind(this)}
+                onSubmit={this.onSubmit.bind(this)} 
+                > 
+                {
+                  props => (
+                    <Form noValidate> 
+                      <div className="form-group">
+                      <Field
+                          type="email"
+                          name="email"
+                          placeholder="Enter email"
+                          className={`form-control ${props.errors.email ? "is-invalid" : ""}`}
+                        />
+                        <ErrorMessage
+                          component="div"
+                          name="email"
+                          className="invalid-feedback"
+                        />
+                      </div>
+
+                      <div className="form-group ">
+                        <Field
+                          type="password"
+                          name="password"
+                          placeholder="Enter password"
+                          className={`form-control ${props.errors.password ? "is-invalid" : ""}`}
+                        />
+                        <ErrorMessage
+                          component="div"
+                          name="password"
+                          className="invalid-feedback"
+                        />
+                      </div>
+
+                      <button type="submit" className="btn btn-primary btn-block">
+                        Log in
+                      </button>    
+                      <ErrorMessage
+                          component="div"
+                          name="check"
+                          className="invalid-feedback"
+                        />
+                     
+                    </Form>
+                  )
+                }
+              </Formik>
+         </div>
+      </div>
+    </div>
+  </div>      
+    );
+  }
 }
+
 
 const mapStateToProps = (state) => {
   return {

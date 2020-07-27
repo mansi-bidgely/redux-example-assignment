@@ -1,36 +1,38 @@
 import React, { Component } from "react";
-
 import { connect } from "react-redux";
 import {
-  login,
-  setLoginError,
   setLoginSuccess,
   setLoginPending,
 } from "../redux/reducer";
-import { Redirect } from "react-router-dom";
+import "../assets/scss/navbar.scss";
+
 class NavBar extends Component {
   constructor(props) {
     super();
   }
-  render() {
-    const isLoggedIn = this.props.login;
 
+  render() {
+    const serializedState = localStorage.getItem("isLoginSuccess");
+    const isLoggedIn = serializedState;
     return (
       <React.Fragment>
         <nav className="navbar navbar-dark bg-dark mb-3">
           {isLoggedIn && (
-            <a className="navbar-brand" onClick={this.handleLogout}>
-              logout
-            </a>
+            <span className="navbar-brand flow" onClick={this.handleLogout}>
+              Logout
+            </span>
           )}
         </nav>
       </React.Fragment>
     );
   }
   handleLogout = () => {
+    localStorage.clear();
     this.props.setLoginSuccess(false);
+  
   };
 }
+
 const mapStateToProps = (state) => {
   return {
     isLoginPending: state.isLoginPending,
