@@ -2,45 +2,46 @@ $button-color: #4caf50;
 $border-color: #f1f1f1;
 .input-comment {
     width: 100%;
-  }
-  .form-modal {
+}
+.form-modal {
     border: none;
-  }
-  .add-comment-button {
-    float: left;
-    margin-left: 12px;
-    margin-top: 2px;
-    border: none;
+}
+.invalid {
+    color: #b22222;
+}
+.add-comment-button {
     background: none;
-    text-decoration: solid;
+    border: none;
+    border-radius: 6px;
+    color: $button-color;
+    float: left;
     font-size: 18px;
     font-weight: 500;
-    color: $button-color;
-    border-radius: 6px;
-  }
-  
-  .modalStyle {
-    position: relative;
-    margin: 10% auto;
-    padding: 5px 20px 13px;
-    min-height: 87px;
+    margin-left: 12px;
+    margin-top: 2px;
+    text-decoration: solid;
+}
+.modalStyle {
     border-radius: 10px;
-  }
-  
-  .comment-button {
+    margin: 10% auto;
+    min-height: 87px;
+    padding: 5px 20px 13px;
+    position: relative;
+}
+.comment-button {
     background-color: $button-color;
-    float: right;
-    margin-top: 15px;
-    color: #ffffff;
-    border-radius: 4px;
-    margin-right: 3px;
     border: none;
-  }
-  .show-comment-button {
+    border-radius: 4px;
+    color: #ffffff;
+    float: right;
+    margin-right: 3px;
+    margin-top: 15px;
+}
+.show-comment-button {
+    background-color: $button-color;
+    border: none;
+    border-radius: 6px;
+    color: #ffffff;
     float: right;
     margin-right: 12px;
-    border: none;
-    background-color: $button-color;
-    color: #ffffff;
-    border-radius: 6px;
-  }
+}

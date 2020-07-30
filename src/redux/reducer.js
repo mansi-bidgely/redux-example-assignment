@@ -41,6 +41,7 @@ export default function reducer(
         author: "landiggity",
         body: "This is my first comment on this forum so don't be a dick",
         initialComment: new Date("June 10,2020").getTime(),
+        fileUpload: "https://www.w3schools.com/html/img_girl.jpg",
       },
       {
         id: 2,
@@ -49,12 +50,14 @@ export default function reducer(
           "That's a mighty fine comment you've got there my good looking fellow...",
 
         initialComment: new Date("June 04,2020").getTime(),
+        fileUpload:"https://www.w3schools.com/html/img_girl.jpg"
       },
       {
         id: 3,
         author: "rosco",
         body: "What is the meaning of all of this 'React' mumbo-jumbo?",
         initialComment: new Date("June 01,2020").getTime(),
+        fileUpload:"https://www.w3schools.com/html/img_girl.jpg"
       },
     ],
   },

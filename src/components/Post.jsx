@@ -20,6 +20,7 @@ class Post extends Component {
     this.state = {
       showComments: false,
       show: false,
+      count:0
     };
   }
 
@@ -33,8 +34,14 @@ class Post extends Component {
       showComments: !this.state.showComments,
     });
   }
+  incrementLike() {
+    this.setState({
+      count:this.state.count+1,
+    })
+  }
 
   render() {
+    let {count}=this.state;
     /*   const comments = this._getComments(); */
     let commentNodes;
     let buttonText = "Show Comments";
@@ -50,8 +57,8 @@ class Post extends Component {
           <h4 className="comment-count">
             {/*  {this._getCommentsTitle(comments.length)} */}
           </h4>
-          <button className="add-comment-button">
-            <i className="fa fa-thumbs-up" aria-hidden="true"></i>Like
+          <button className="add-comment-button" onClick = {this.incrementLike.bind(this)}>
+    <i className="fa fa-thumbs-up" aria-hidden="true"></i>Like {count}
           </button>
           <button
             className="add-comment-button"
@@ -61,9 +68,7 @@ class Post extends Component {
           >
             <i className="fa fa-comments" aria-hidden="true"></i>Comment
           </button>
-          <button className="add-comment-button">
-            <i className="fa fa-share" aria-hidden="true"></i>Share
-          </button>
+         
           <button
             className="show-comment-button"
             id="comment-reveal"

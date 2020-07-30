@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 import { connect } from "react-redux";
 import user from "../assets/images/default-user.png";
 import "../assets/scss/comment.scss";
@@ -34,14 +34,19 @@ function getTimeStamp(timeStamp) {
 }
 
 const commentList = ({ comments }) => {
+
+  console.log(comments);
   return (
     <ul className="list-group list-group-flush top">
       {comments.map((el) => (
-        <li className="list-group-item" key={el.id}>
-          <img src={user} className="image-width" />
-          {el.body}
-          <br></br>
-          <div>{getTimeStamp(el.initialComment)}</div>
+        
+        <li className="list-group-item li-item" key={el.id}>
+          
+          <img alt="user" src={user} className="image-width" />
+          <div className="user">Jack Smith</div>
+         <div className="bodyComment"> {el.body}</div>
+      <p>{<img alt="file" className="fileUpload" src={el.fileUpload}/>}</p>
+          <div className="comment-date">{getTimeStamp(el.initialComment)}</div>
         </li>
       ))}
     </ul>

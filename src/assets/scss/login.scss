@@ -6,8 +6,8 @@ $border-color: #f1f1f1;
     width: 100%;
    
     img.avatar {
+      margin-bottom: 20px;
       width: 40%;
-    margin-bottom: 20px;
     }
   
     .borderBox {
@@ -17,22 +17,25 @@ $border-color: #f1f1f1;
     }
     input[type="email"],
     input[type="password"] {
-      width: 100%;
-      padding: 12px 20px;
-      margin: 8px 0;
-      display: inline-block;
       border: 1px solid $border-color;
       box-sizing: border-box;
+      display: inline-block;
+      margin: 8px 0;
+      padding: 12px 20px;
+      width: 100%;
+    }
+    .error {
+      color: #b22222;
     }
   
-  .login {
-    background-color: $button-color;
-    color: white;
-    padding: 14px 20px;
-    margin: 8px 0;
-    border: none;
-    cursor: pointer;
-    width: 100%;
+    .login {
+      background-color: $button-color;
+      border: none;
+      color: #FFF;
+      cursor: pointer;
+      margin: 8px 0;
+      padding: 14px 20px;
+      width: 100%;
   }
   }
   

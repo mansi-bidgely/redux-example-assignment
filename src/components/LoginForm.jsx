@@ -20,6 +20,8 @@ class LoginForm extends Component {
     return {
       email: "",
       password: "",
+      errorMessage: ''
+
 
     }
   }
@@ -51,17 +53,18 @@ class LoginForm extends Component {
         localStorage.setItem("isLoginSuccess",true);
         this.props.setLoginPending(false);
         this.props.setLoginSuccess(true);
-        this.props.history.push("/dashboard");
+          this.props.history.push("/dashboard");
       })
       .catch((error) => {
-               return error;
+        this.setState({errorMessage: error.message});
+           
 
       });
   };
 
 
   render() {
-    let { email, password } = this.state;
+    let { email, password ,isError} = this.state;
     let { isLoginPending, isLoginSuccess, LoginError } = this.props;
     let { setLoginPending, setLoginSuccess } = this.state;
     let { values,valid, errors } = this.state; 
@@ -107,14 +110,13 @@ class LoginForm extends Component {
                         />
                       </div>
 
-                      <button type="submit" className="btn btn-primary btn-block">
+                     <button  type="submit" className="btn btn-primary btn-block">
                         Log in
-                      </button>    
-                      <ErrorMessage
-                          component="div"
-                          name="check"
-                          className="invalid-feedback"
-                        />
+                  </button>
+                  { this.state.errorMessage &&
+  <h3 className="error"> { this.state.errorMessage } </h3> }
+
+                      
                      
                     </Form>
                   )

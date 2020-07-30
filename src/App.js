@@ -2,6 +2,7 @@ import React from "react";
 import { Provider } from "react-redux";
 import { createStore } from "redux";
 import reducer from "./redux/reducer";
+import AuthenticatedRoute from "./Request/AuthenticatedRoute"
 import {
   BrowserRouter as Router,
   Route,
@@ -15,7 +16,9 @@ import LoginForm from "./components/LoginForm.jsx";
 import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 
+
 function App() {
+ 
   const isAllowed = localStorage.getItem("isLoginSuccess");
   return (
     <div className="App">
@@ -33,8 +36,7 @@ function App() {
                 );
               }}
             />
-            <Route exact path="/dashboard" component={Dashboard}></Route>
-
+            <AuthenticatedRoute  path="/dashboard" component={Dashboard}></AuthenticatedRoute>
             <Route exact path="/login" component={LoginForm}></Route>
           </Switch>
         </Router>
